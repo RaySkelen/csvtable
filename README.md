@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+Context: Your company is recruiting lawyers. You have a prepared csv file, which contains employee data in the following format:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1) Full name
+2) Phone
+3) Email
+4) Age
+5) Experience
+6) Yearly Income
+7) Has children
+8) License states
+9) Expiration date
+10) License number
 
-## Available Scripts
+You need to import the data and display it in a table. If the data is filled in incorrectly - the corresponding cell should be highlighted in red.
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Validation rules:
+1) Data can have a space before or after the text, so it should be ignored.
+2) Email and Phone must be unique within the file. AlexCho@cho.com is the same as alexCHO@CHO.coM. The Duplicate with column should show the ID of the first row found, which duplicates the current email / phone.
+3) Age - must be of type integer. Not less than 21 years.
+4) Experience - greater than or equal to 0 (not more than current Age - 21).
+5) Yearly income - can be integer or decimal, but always displayed with two decimal places. Not more than 1 million.
+6) All numeric values should be > = 0 (depending on the field - age cannot be 0).
+7) License states - can be abbreviated or have a full name (AL, Alabama). However, they are displayed only in a short format. There can be several values, separated by a vertical line | .
+8) Expiration date - can be accepted in two formats (YYYY-MM-DD or MM / DD / YYYY). Everything else is a mistake. Cannot be less than the current date.
+9) Phone - should be displayed in the format + 1xxxxxxxxxx (ten characters after +1). However, you can import in the following formats: + 1хххххххххх, 1хххххххххх, хххххххххх.
+10) Has children - is accepted as TRUE / FALSE values. An empty cell is accepted as FALSE. Everything else is a mistake.
+11) License number - 6 characters consisting of numbers or text characters.
+12) Full Name / Phone / Email are required fields. If one of them is not present - instead of the table it is necessary to show the message that the file is not correct. Show the same message if the file format is not csv. If the title name has another case - 'full Name', the field is considered valid.
